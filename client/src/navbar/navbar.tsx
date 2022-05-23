@@ -1,9 +1,22 @@
 import React from 'react';
 import "./navbar.css"
-import {alpha, AppBar, IconButton, InputBase, MenuItem, styled, Toolbar, Typography} from "@mui/material";
+import {
+    AppBar,
+    Box, Divider,
+    Drawer,
+    IconButton,
+    List,
+    ListItem, ListItemButton, ListItemIcon,
+    ListItemText,
+    MenuItem,
+    Toolbar,
+    Typography
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from '@mui/icons-material/Search';
 import NavbarItem from "../utils/interfaces/navbarItem";
+import SearchBar from "./searchBar/searchBar";
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 const pages: NavbarItem[] = [
     {
@@ -20,62 +33,83 @@ const pages: NavbarItem[] = [
     },
 ];
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+const drawerItems: NavbarItem[] = [
+    {
+        id: "1",
+        name: "לאן לפנות"
     },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
+    {
+        id: "2",
+        name: "מאמרים מקצועיים"
     },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
+    {
+        id: "3",
+        name: "טיפים ראשוניים"
     },
-}));
-
+    {
+        id: "4",
+        name: "עדויות אישיות"
+    },
+    {
+        id: "5",
+        name: "כתבות"
+    },
+    {
+        id: "6",
+        name: "המאבק באלימות"
+    },
+    {
+        id: "7",
+        name: "על העמותה"
+    },
+    {
+        id: "8",
+        name: "תרמו לנו"
+    }
+];
 
 function Navbar() {
+    const [state, setState] = React.useState({
+        isDrawerOpen: false
+    });
+
+    const toggleDrawer =
+        (open: boolean) =>
+            (event: React.KeyboardEvent | React.MouseEvent) => {
+                if (
+                    event.type === 'keydown' &&
+                    ((event as React.KeyboardEvent).key === 'Tab' ||
+                        (event as React.KeyboardEvent).key === 'Shift')
+                ) {
+                    return;
+                }
+
+                setState({ ...state, isDrawerOpen: open });
+            };
+
+    const list = () => (
+        <Box
+            sx={{ width: 250 }}
+            role="presentation"
+            onClick={toggleDrawer( false)}
+            onKeyDown={toggleDrawer( false)}
+        >
+            <List>
+                {drawerItems.map((item: NavbarItem) => (
+                    <ListItem key={item.id} disablePadding>
+                        <ListItemButton>
+                           {item.name}
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+
     return (
         <AppBar position="sticky" >
             <Toolbar variant="dense">
-                <Search>
-                    <SearchIconWrapper>
-                        <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase dir="rtl"
-                        placeholder="חפש..."
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </Search>
+                <SearchBar></SearchBar>
                 {pages.map((page: NavbarItem) => (
                     <MenuItem key={page.id} >
                         <Typography textAlign="center">{page.name}</Typography>
@@ -85,7 +119,14 @@ function Navbar() {
                     אזור אפור
                 </Typography>
                 <IconButton edge="end" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                    <MenuIcon />
+                    <MenuIcon onClick={toggleDrawer(true)} />
+                    <Drawer
+                        anchor="right"
+                        open={state["isDrawerOpen"]}
+                        onClose={toggleDrawer(false)}
+                    >
+                        {list()}
+                    </Drawer>
                 </IconButton>
             </Toolbar>
         </AppBar>
