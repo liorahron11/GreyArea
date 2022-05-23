@@ -97,7 +97,7 @@ function Navbar() {
             <List>
                 {drawerItems.map((item: NavbarItem) => (
                     <ListItem key={item.id} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton dir="rtl">
                            {item.name}
                         </ListItemButton>
                     </ListItem>
