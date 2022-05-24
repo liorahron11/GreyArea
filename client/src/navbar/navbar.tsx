@@ -107,7 +107,7 @@ function Navbar() {
     );
 
     return (
-        <AppBar position="sticky" >
+        <AppBar position="fixed" >
             <Toolbar variant="dense">
                 <SearchBar></SearchBar>
                 {pages.map((page: NavbarItem) => (
