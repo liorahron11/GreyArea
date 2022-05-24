@@ -21,7 +21,7 @@ import MailIcon from '@mui/icons-material/Mail';
 const pages: NavbarItem[] = [
     {
         id: "1",
-        name: "זוגיות בריאה"
+        name: "סיוע ויעוץ"
     },
     {
         id: "2",
@@ -29,7 +29,7 @@ const pages: NavbarItem[] = [
     },
     {
         id: "3",
-        name: "עזרה ותמיכה"
+        name: "זוגיות בריאה"
     },
 ];
 
@@ -115,9 +115,9 @@ function Navbar() {
                         <Typography textAlign="center">{page.name}</Typography>
                     </MenuItem>
                 ))}
-                <Typography className="header" variant="h6" color="inherit" component="div">
-                    אזור אפור
-                </Typography>
+                <div>
+                    <img style={{height: 50, width: 90}} src={require("./logo.png")}/>
+                </div>
                 <IconButton edge="end" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                     <MenuIcon onClick={toggleDrawer(true)} />
                     <Drawer

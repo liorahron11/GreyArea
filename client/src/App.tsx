@@ -8,10 +8,10 @@ import Cards from "./home/cards";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#7D1E6A',
+      main: '#FAF9F6',
     },
     secondary: {
-      main: '#EEB0B0',
+      main: '#FFF',
     },
   },
 });
@@ -28,8 +28,9 @@ function App() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                padding: 30,
+                padding: 20,
             }}>
+                <h4 style={{alignSelf: "center", marginTop: 40}}>אלימות סמויה רוצחת בשקט - אל תישארי באפור</h4>
                 <div style={{alignSelf: "center"}}>
                     <Carousel></Carousel>
                 </div>

@@ -2,26 +2,29 @@ import React from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
 
 function Cards() {
-    const articles: any[] = [1,2,3];
+    const articles: any[] = [
+        {image: "https://img.freepik.com/free-vector/group-people-illustration-set_52683-33806.jpg?w=2000"},
+        {image: "https://365psd.com/images/istock/previews/9058/90581657-people-large-group.jpg"},
+        {image: "https://img.freepik.com/free-vector/diverse-multiracial-multicultural-group-people-illustration-cartoon-lat-style_465677-1.jpg"},
+    ];
 
     return (
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around", padding: 30}}>
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around", padding: 20}}>
             {
                 articles.map((article) => (
-                    <Card sx={{ maxWidth: 345 }}>
+                    <Card sx={{ width:300  }}>
                         <CardMedia
                             component="img"
                             alt="green iguana"
-                            height="140"
-                            image="https://scontent.ftlv7-1.fna.fbcdn.net/v/t1.18169-9/1001879_673897642635897_1678909310_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=174925&_nc_ohc=g3GCuTor-lkAX_BF6sc&_nc_ht=scontent.ftlv7-1.fna&oh=00_AT9DByv7uCBJa_66QFdaHRsO9QMUE8ziGvfow9OZycKr9Q&oe=62B273C7"
+                            height="170"
+                            image={article.image}
                         />
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Lizard
+                            <Typography dir="rtl" gutterBottom variant="h5" component="div">
+                                כותרת
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
+                            <Typography variant="body2" color="text.secondary" dir="rtl">
+                                טקסט
                             </Typography>
                         </CardContent>
                         <CardActions>
