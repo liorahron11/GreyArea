@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import Navbar from "./navbar/navbar";
+import Carousel from "./home/carousel";
 
 const theme = createTheme({
   palette: {
@@ -17,9 +18,15 @@ const theme = createTheme({
 function App() {
   return (
       <ThemeProvider theme={theme}>
-        <div className="container">
-         <Navbar></Navbar>
+        <div>
+            <div>
+                <Navbar></Navbar>
+            </div>
+            <div style={{display: "flex", justifyContent: "center", alignSelf: 'stretch', padding: 30}}>
+                <Carousel/>
+            </div>
         </div>
+
       </ThemeProvider>
   );
 }
